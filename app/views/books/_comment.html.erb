@@ -1,4 +1,4 @@
-  <table class='table'>
+  <table>
     <% book.book_comments.each do |book_comment| %>
       <tr>
         <td>
@@ -15,6 +15,6 @@
     <% end %>
   </table>
   <%= form_with model:[book,book_comment],local: true do |f| %>
-    <%= f.text_area :comment,class: "form-control"%>
+    <%= f.text_area :comment,size: "60x5" %><br>
     <%= f.submit "送信" %>
   <% end %>
