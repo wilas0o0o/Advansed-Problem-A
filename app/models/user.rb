@@ -21,24 +21,24 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   def follow(user_id)
     active_relationships.create(followed_id: user_id)
   end
-  
+
   def unfollow(user_id)
     active_relationships.find_by(followed_id: user_id).destroy
   end
-  
-  def self.search_for(content,method)
+
+  def self.search_for(content, method)
   	if method == "perfect"
-  		User.where(title: content)
+  		User.where(name: content)
   	elsif method == "forward"
-  		User.where(title: content + "%")
+  		User.where('name LIKE ?', content + '%')
   	elsif method == "backward"
-  		User.where(title: "%" + content)
-  	else
-  		User.where(title: "%" + content + "%")
+  		User.where('name LIKE ?', '%' + content)
+  	elsif method == "partical"
+  		User.where('name LIKE ?', '%' + content + '%')
   	end
   end
 end
