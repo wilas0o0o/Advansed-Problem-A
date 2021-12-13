@@ -14,7 +14,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require jquery
-/* global &*/
+/*global $*/
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
