@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
   before_action :ensure_correct_user,only:[:edit,:update,:destroy]
+  impressionist :actions => [:show]
 
   def show
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+    impressionist(@book,nil,unique:[:session_hash.to_s])
   end
 
   def index
